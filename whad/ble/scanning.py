@@ -250,12 +250,10 @@ class AdvertisingDevicesDB:
     def __init__(self):
         self.reset()
 
-
     def reset(self):
         """Remove database content.
         """
         self.__db = {}
-
 
     def find_device(self, address: str) -> Optional[AdvertisingDevice]:
         """Find a device based on its BD address.
@@ -265,11 +263,10 @@ class AdvertisingDevicesDB:
         :return:    Device if found, `None` otherwise.
         :rtype:     :class:`whad.ble.scanning.AdvertisingDevice`
         """
-        device = None
         address = address.lower()
         if address in self.__db:
-            device = self.__db[address]
-        return device
+            return self.__db[address]
+        return None
 
     def register_device(self, device):
         """Register or update a device.

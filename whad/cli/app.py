@@ -58,7 +58,7 @@ import fcntl
 import logging
 import traceback
 
-from typing import Generator, Optional
+from typing import Callable, Generator, Optional
 from urllib.parse import urlparse, parse_qsl
 from signal import signal, SIGPIPE, SIG_DFL
 from argparse import ArgumentParser
@@ -125,10 +125,10 @@ class CommandsRegistry:
     associated documentation.
     """
 
-    COMMANDS = {}
-    CMDS_SHORT_DESC = {}
-    CMDS_DESC = {}
-    CATEGORIES = {}
+    COMMANDS: dict[str, Callable] = {}
+    CMDS_SHORT_DESC: dict[str, str] = {}
+    CMDS_DESC: dict[str, str] = {}
+    CATEGORIES: dict[str, list[str]] = {}
 
     @staticmethod
     def register(name: str, handler, category: str):
@@ -157,7 +157,7 @@ class CommandsRegistry:
             CommandsRegistry.CMDS_DESC[name] = desc
 
     @staticmethod
-    def get_handler(command_name: str):
+    def get_handler(command_name: str) -> Optional[Callable]:
         """Get command handler from command name.
 
         :param command_name: Command name
@@ -181,7 +181,7 @@ class CommandsRegistry:
         return None
 
     @staticmethod
-    def get_desc(command_name: str):
+    def get_desc(command_name: str) -> Optional[str]:
         """Get command long description from command name.
 
         :param command_name: Command name
@@ -223,7 +223,7 @@ class CommandsRegistry:
 
 
 @command('help')
-def show_default_help(_, args):
+def show_default_help(_, args: list[str]):
     """show this help screen
 
     <ansimagenta><b>help</b> <i>[command]</i></ansimagenta>
@@ -409,7 +409,7 @@ class CommandLineApp(ArgumentParser):
         """
         return self.__args
 
-    def is_piped_interface(self):
+    def is_piped_interface(self) -> bool:
         """Determine if the input interface is piped from a previous app in
         the command line
         """

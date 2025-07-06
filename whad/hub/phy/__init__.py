@@ -95,11 +95,11 @@ class TxPower:
 class PhyMetadata(Metadata):
     frequency : Optional[int] = None
     iq : list = field(default_factory=lambda: [])
-    endianness : Endianness = None
+    endianness : Optional[Endianness] = None
     deviation : Optional[int] = None
     datarate : Optional[int] = None
-    modulation : Modulation = None
-    syncword : Syncword = None
+    modulation : Optional[Modulation] = None
+    syncword : Optional[Syncword] = None
 
     def convert_to_header(self):
         return Phy_Packet_Hdr(

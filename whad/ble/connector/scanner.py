@@ -138,7 +138,7 @@ class Scanner(BLE):
                     self.monitor_packet_rx(packet)
                     # Force TxAdd value to propagate the address type
                     if isinstance(message, BleAdvPduReceived):
-                        if message.addr_type > 0:
+                        if int(message.addr_type) > 0:
                             packet.getlayer(BTLE_ADV).TxAdd = 1
                     yield packet
 

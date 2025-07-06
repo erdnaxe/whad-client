@@ -12,7 +12,7 @@ def channel_to_frequency(channel):
 class Metadata:
     raw : Optional[bool] = None
     decrypted : Optional[bool] = None
-    timestamp : Union[int, float] = None
+    timestamp : Optional[Union[int, float]] = None
     channel : Optional[int] = None
     rssi : Optional[int] = None
 

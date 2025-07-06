@@ -200,12 +200,12 @@ class SecurityAccess:
         return return_value
 
     @classmethod
-    def int_to_accesses(cls, value) -> list[SecurityProperty]:
+    def int_to_accesses(cls, value) -> list["SecurityAccess"]:
         """Convert an integer value into the corresponding security properties
         list
         """
-        accesses = []
-        read_properties = []
+        accesses: list["SecurityAccess"] = []
+        read_properties: list[type[SecurityProperty]] = []
         if bool(value & 1):
             read_properties.append(Encryption)
         if bool(value & 2):
@@ -216,7 +216,7 @@ class SecurityAccess:
             accesses.append(ReadAccess(*read_properties))
 
         value = value >> 4
-        write_properties = []
+        write_properties: list[type[SecurityProperty]] = []
         if bool(value & 1):
             write_properties.append(Encryption)
         if bool(value & 2):

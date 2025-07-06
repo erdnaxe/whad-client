@@ -65,7 +65,7 @@ class BleCentralShell(InteractiveShell):
     """Bluetooth Low Energy interactive shell
     """
 
-    def __init__(self, interface: Optional[WhadDevice] = None, connector=None, bd_address=None):
+    def __init__(self, interface: Optional[WhadDevice] = None, connector: Optional[WhadDeviceConnector] = None, bd_address=None):
         super().__init__(HTML("<b>wble-central></b>"))
 
         # If interface is None, pick the first matching our needs

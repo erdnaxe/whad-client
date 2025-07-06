@@ -2,7 +2,7 @@
 """
 import json
 import os.path
-from typing import Optional
+from typing import Any, Optional
 
 from importlib import resources
 
@@ -34,7 +34,7 @@ def uuid_match(uuid: UUID, pattern: str) -> bool:
 class CluesDb:
     """DarkMentorLLC Clues collaborative database.
     """
-    CLUES_CACHE = []
+    CLUES_CACHE: list[dict[str, Any]] = []
 
     @staticmethod
     def load_data():

@@ -205,7 +205,7 @@ class WhadDevice:
     will be performed in this class.
     """
 
-    INTERFACE_NAME = None
+    INTERFACE_NAME: Optional[str] = None
 
     @classmethod
     def _get_sub_classes(cls):
@@ -409,8 +409,8 @@ class WhadDevice:
         self.__timeout = 5.0
 
         # Message queues
-        self.__messages = Queue()
-        self.__msg_queue = Queue()
+        self.__messages: Queue = Queue()
+        self.__msg_queue: Queue = Queue()
         self.__mq_filter = None
 
         # Input pipes
@@ -1113,7 +1113,7 @@ class VirtualDevice(WhadDevice):
         self._fw_author = None
         self._fw_url = None
         self._fw_version = (0, 0, 0)
-        self._dev_capabilities = {}
+        self._dev_capabilities: dict[int, list[int]] = {}
         self.__lock = Lock()
         super().__init__(index)
 

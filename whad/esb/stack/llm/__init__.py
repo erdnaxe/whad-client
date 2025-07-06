@@ -59,8 +59,8 @@ class LinkLayer(Layer):
         :param options: Layer options
         :type options: dict, optional
         """
-        self.__ack_queue = Queue()
-        self.__data_queue = Queue()
+        self.__ack_queue: Queue = Queue()
+        self.__data_queue: Queue = Queue()
 
     @property
     def channel(self) -> int:
@@ -223,7 +223,7 @@ class LinkLayer(Layer):
         # No ack received
         return None
 
-    def wait_for_ack(self, timeout: Optional[float] = 0.1):
+    def wait_for_ack(self, timeout: float = 0.1):
         """Wait for an acknowledgement from remote device.
 
         :param timeout: Waiting timeout
@@ -240,7 +240,7 @@ class LinkLayer(Layer):
                 pass
         raise LinkLayerTimeoutException
 
-    def wait_for_data(self, timeout: Optional[float] = 0.1):
+    def wait_for_data(self, timeout: float = 0.1):
         """Wait for incoming data packet.
 
         :param timeout: Waiting timeout

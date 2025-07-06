@@ -10,7 +10,7 @@ class Registry(object):
     """Protocol message versions registry.
     """
 
-    VERSIONS = {}
+    VERSIONS: dict[int, dict[str, type[object]]] = {}
 
     @classmethod
     def add_node_version(parent_class, version: int, name: str, clazz):

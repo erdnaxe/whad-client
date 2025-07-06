@@ -524,7 +524,7 @@ class ZCLCluster(Cluster, metaclass=ZCLClusterMetaclass):
 
 
     # Decorators
-    def command_receive(command_id, command_name, profile_wide=False):
+    def command_receive(command_id: int, command_name: str, profile_wide: bool = False):
         """
         Mark a method as command reception callback.
         """
@@ -533,7 +533,7 @@ class ZCLCluster(Cluster, metaclass=ZCLClusterMetaclass):
             return f
         return receive_decorator
 
-    def command_generate(command_id, command_name, profile_wide=False):
+    def command_generate(command_id: int, command_name: str, profile_wide: bool = False):
         """
         Mark a method as command generator callback.
         """

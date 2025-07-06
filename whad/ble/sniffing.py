@@ -17,7 +17,7 @@ class SynchronizedConnection:
     crc_init : Optional[int] = None
     hop_interval : Optional[int] = None
     hop_increment : Optional[int] = None
-    channel_map : ChannelMap = None
+    channel_map : Optional[ChannelMap] = None
 
 class ConnectionConfiguration(SynchronizedConnection):
     """
