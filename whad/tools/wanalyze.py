@@ -6,7 +6,7 @@ which can be used to access a device remotely.
 import sys
 from time import sleep
 import logging
-from typing import List, Union, Tuple
+from typing import Union
 
 
 from prompt_toolkit import print_formatted_text, HTML
@@ -157,7 +157,7 @@ class WhadAnalyzeApp(CommandLineApp):
         self.provided_parameters = {}
         self.selected_analyzers = {}
 
-    def on_packet(self, pkt: Packet, piped: bool = False) -> Union[List[Packet], None]:
+    def on_packet(self, pkt: Packet, piped: bool = False) -> Union[list[Packet], None]:
         """
         Packet processing callback.
 
@@ -249,7 +249,7 @@ class WhadAnalyzeApp(CommandLineApp):
         # No packets returned
         return None
 
-    def get_provided_analyzers(self) -> Tuple[list, dict]:
+    def get_provided_analyzers(self) -> tuple[list, dict]:
         """Retrieve a list of analyzers with their corresponding parameters.
 
         :return: list of available analyzers and their associated parameters.

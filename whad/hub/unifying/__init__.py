@@ -1,6 +1,6 @@
 """WHAD Protocol Logitech Unifying domain message abstraction layer.
 """
-from typing import List, Union
+from typing import Union
 from dataclasses import dataclass, field, fields
 
 from whad.hub.registry import Registry

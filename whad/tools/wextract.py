@@ -6,7 +6,6 @@ which can be used to access a device remotely.
 import sys
 import time
 import logging
-from typing import List, Tuple
 
 from scapy.layers.all import *
 from scapy.packet import Packet
@@ -68,7 +67,7 @@ class WhadExtractApp(CommandLineApp):
             help="Show exceptions raised when extracting requested values (debug)"
         )
 
-    def build_extractors(self) -> List[Tuple[str, callable]]:
+    def build_extractors(self) -> list[tuple[str, callable]]:
         """Build extractors based on provided arguments.
 
         :rtype: list

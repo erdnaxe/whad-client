@@ -3,7 +3,6 @@ Whad up ?
 """
 import sys
 from html import escape
-from typing import List
 
 # Helpers
 from prompt_toolkit import print_formatted_text, HTML
@@ -176,7 +175,7 @@ COMMANDS = {
 }
 
 
-def get_readable_capabilities(caps: int) -> List[str]:
+def get_readable_capabilities(caps: int) -> list[str]:
     """Turn device capabilities into a readable string.
 
     :param caps: Capabilities
@@ -190,7 +189,7 @@ def get_readable_capabilities(caps: int) -> List[str]:
             capabilities.append(CAPABILITIES[caps & (1 << i)])
     return capabilities
 
-def get_commands_desc(domain: str, commands: int) -> List[str]:
+def get_commands_desc(domain: str, commands: int) -> list[str]:
     """Turn a domain supported commands integer into a list of
     readable command names.
 

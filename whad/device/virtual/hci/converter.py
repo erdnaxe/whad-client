@@ -6,7 +6,6 @@ import logging
 from struct import unpack
 from queue import Queue
 from enum import IntEnum
-from typing import List
 
 # Scapy
 from scapy.layers.bluetooth import HCI_Event_LE_Meta, HCI_LE_Meta_Advertising_Reports, \
@@ -189,7 +188,7 @@ class HCIConverter:
         """
         self.pending_messages_queue.put(event)
 
-    def get_pending_messages(self) -> List[HubMessage]:
+    def get_pending_messages(self) -> list[HubMessage]:
         """Get pending messages.
 
         :return: List of pending hub messages
@@ -239,7 +238,7 @@ class HCIConverter:
         # Return no messages on unknown events
         return []
 
-    def process_encryption_change_event(self, event) -> List[HubMessage]:
+    def process_encryption_change_event(self, event) -> list[HubMessage]:
         """Process encryption change.
 
         :param event: HCI event to process

@@ -8,7 +8,7 @@ that allows Logitech Unifying packets sniffing.
 import logging
 
 from time import time
-from typing import Generator, List
+from typing import Generator
 from scapy.packet import Packet
 
 from whad.device import WhadDevice
@@ -172,7 +172,7 @@ class Sniffer(Unifying, EventsManager):
         self.__configuration.scanning = scanning
         self._enable_sniffing()
 
-    def available_actions(self, filter=None) -> List:
+    def available_actions(self, filter=None) -> list:
         """Identify available actions.
         """
         actions = []

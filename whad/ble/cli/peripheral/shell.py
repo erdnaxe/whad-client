@@ -1,7 +1,7 @@
 """wble-peripheral interactive shell.
 """
 import json
-from typing import Union, List, Tuple
+from typing import Union
 from binascii import unhexlify, Error as BinasciiError
 
 # pylint: disable-next=wildcard-import,unused-wildcard-import
@@ -181,7 +181,7 @@ class AdvRecordsManager:
             return (cln.company, cln.data)
         
     @manufacturer_data.setter
-    def manufacturer_data(self, data: Tuple[int, bytes]):
+    def manufacturer_data(self, data: tuple[int, bytes]):
         if isinstance(data, tuple) and len(data) == 2:
             comp_id, data = data
             if isinstance(comp_id, int) and isinstance(data, bytes):
@@ -200,7 +200,7 @@ class AdvRecordsManager:
                 else:
                     self.add_record(AdvManufacturerSpecificData(comp_id, data))
 
-    def __fit_records(self, records: List[AdvDataField], length: int = 31):
+    def __fit_records(self, records: list[AdvDataField], length: int = 31):
         """Find the records that may best fit in the given space
         """
         fitting_records = []

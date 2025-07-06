@@ -1,6 +1,5 @@
 """WHAD Protocol Bluetooth Low Energy domain message abstraction layer.
 """
-from typing import List
 from dataclasses import dataclass, field, fields
 
 from .bdaddr import BDAddress
@@ -296,7 +295,7 @@ class BleDomain(Registry):
             show_advertisements=show_adv
         )
 
-    def create_sniff_access_address(self, channels: List[int]) -> HubMessage:
+    def create_sniff_access_address(self, channels: list[int]) -> HubMessage:
         """Create a SniffAccessAddress message.
 
         :param channels: List of channels
@@ -310,7 +309,7 @@ class BleDomain(Registry):
 
     def create_sniff_active_conn(self, access_address: int, crc_init: int = None,
                               channel_map: ChannelMap = None, interval: int = None,
-                              increment: int = None, channels: List[int] = None):
+                              increment: int = None, channels: list[int] = None):
         """Create a SniffActiveConn message.
 
         :param access_address: Target connection access address
@@ -884,7 +883,7 @@ class BleDomain(Registry):
             success=success
         )
 
-    def create_prepare_sequence_manual(self, seq_id: int, direction: int, packets: List[bytes]) -> HubMessage:
+    def create_prepare_sequence_manual(self, seq_id: int, direction: int, packets: list[bytes]) -> HubMessage:
         """Create a PrepareSequenceManual message
 
         :param seq_id: Sequence identifier (must be unique)
@@ -910,7 +909,7 @@ class BleDomain(Registry):
         return message
 
     def create_prepare_sequence_conn_evt(self, seq_id: int, direction: int, conn_evt: int, \
-                                     packets: List[bytes]) -> HubMessage:
+                                     packets: list[bytes]) -> HubMessage:
         """Create a PrepareSequenceConnEvt message
 
         :param seq_id: Sequence identifier (must be unique)
@@ -938,7 +937,7 @@ class BleDomain(Registry):
         return message
 
     def create_prepare_sequence_pattern(self, seq_id: int, direction: int, pattern: bytes, \
-                                     mask: bytes, offset: int, packets: List[bytes]) -> HubMessage:
+                                     mask: bytes, offset: int, packets: list[bytes]) -> HubMessage:
         """Create a PrepareSequencePattern message
 
         :param seq_id: Sequence identifier (must be unique)

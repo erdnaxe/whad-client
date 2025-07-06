@@ -11,7 +11,7 @@ allows to interact with it:
 """
 import json
 import logging
-from typing import List, Iterator
+from typing import Iterator
 
 from whad.ble.profile.attribute import Attribute, UUID
 from whad.ble.profile.characteristic import Characteristic as BleCharacteristic,\
@@ -337,7 +337,7 @@ class Characteristic:
         return self.__value
 
     @property
-    def permissions(self) -> List[str]:
+    def permissions(self) -> list[str]:
         """Characteristics permissions
         """
         return self.__perms
@@ -923,7 +923,7 @@ class GenericProfile:
         # Error.
         raise IndexError
 
-    def find_objects_by_range(self, start, end) -> List[Attribute]:
+    def find_objects_by_range(self, start, end) -> list[Attribute]:
         """Find attributes with handles belonging in the [start, end+1] interval.
 
         :param  start:  Start handle value

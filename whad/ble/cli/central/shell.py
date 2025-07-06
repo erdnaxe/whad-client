@@ -3,7 +3,6 @@
 import re
 import html
 
-from typing import List
 from binascii import unhexlify, Error as BinasciiError
 
 from prompt_toolkit import print_formatted_text, HTML
@@ -292,7 +291,7 @@ class BleCentralShell(InteractiveShell):
         else:
             self.error("<u>info</u> requires a single parameter (device name or BD address).")
 
-    def get_cache_targets(self) -> List:
+    def get_cache_targets(self) -> list:
         """Retrieve targets from cache
         """
         # Keep track of BD addresses and names

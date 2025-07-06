@@ -1,6 +1,6 @@
 """WHAD Protocol ESB domain message abstraction layer.
 """
-from typing import List, Union
+from typing import Union
 from dataclasses import dataclass, field, fields
 
 from whad.scapy.layers.esb import ESB_Hdr, ESB_Payload_Hdr, ESB_Ack_Response, \

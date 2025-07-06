@@ -7,7 +7,6 @@ and sent to the underlying layer (L2CAP).
 """
 import logging
 
-from typing import List
 from scapy.layers.bluetooth import ATT_Error_Response, ATT_Exchange_MTU_Request, \
     ATT_Exchange_MTU_Response, ATT_Execute_Write_Request, ATT_Execute_Write_Response, \
     ATT_Find_By_Type_Value_Request, ATT_Find_By_Type_Value_Response, ATT_Find_Information_Request, \
@@ -579,7 +578,7 @@ class ATTLayer(Layer):
             data=value
         ))
 
-    def  find_by_type_value_response(self, handles: List[ATT_Handle]):
+    def  find_by_type_value_response(self, handles: list[ATT_Handle]):
         """Sends an ATT Find By Type Value Response
         """
         self.send_data(ATT_Find_By_Type_Value_Response(

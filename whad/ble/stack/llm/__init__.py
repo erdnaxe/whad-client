@@ -6,7 +6,6 @@ from binascii import hexlify
 from struct import pack
 from random import randint
 from threading import Lock
-from typing import Tuple
 
 from scapy.layers.bluetooth4LE import *
 
@@ -304,7 +303,7 @@ class LinkLayerState(LayerState):
             self.connections[conn_handle]['skd'] = skd
             self.connections[conn_handle]['iv'] = iv
 
-    def get_skd_and_iv(self, conn_handle: int) -> Tuple[int, int]:
+    def get_skd_and_iv(self, conn_handle: int) -> tuple[int, int]:
         """Retrieve SKD and IV for a given connection
 
         :param conn_handle: Connection handle

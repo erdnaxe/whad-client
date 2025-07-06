@@ -1,7 +1,7 @@
 """BLE Channel Map helper
 """
 
-from typing import List, Generator
+from typing import Generator
 from struct import unpack
 
 class ChannelMap(object):
@@ -37,9 +37,7 @@ class ChannelMap(object):
         chanmap_int += channel_map[4] << 32
         return ChannelMap.from_int(chanmap_int)
 
-
-
-    def __init__(self, channels: List[int] = None):
+    def __init__(self, channels: list[int] = None):
         """Initialize our channel map
 
         :param channels: List of channels to include in channel map

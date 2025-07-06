@@ -1,7 +1,6 @@
 """ATT constants (error and operation codes)
 """
 import sys
-from typing import List
 
 if sys.version_info[0] == 3 and sys.version_info[1] >= 10:
     # Import UnionType only for Python >= 3.10
@@ -201,7 +200,7 @@ class SecurityAccess:
         return return_value
 
     @classmethod
-    def int_to_accesses(cls, value) -> List[SecurityProperty]:
+    def int_to_accesses(cls, value) -> list[SecurityProperty]:
         """Convert an integer value into the corresponding security properties
         list
         """

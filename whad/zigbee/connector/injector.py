@@ -3,7 +3,7 @@
 This module provides an Injector class for ZigBee protocol, that is used by
 `winject` to inject ZigBee protocol.
 """
-from typing import Generator, List
+from typing import Generator
 
 # Required by type hints
 from scapy.packet import Packet

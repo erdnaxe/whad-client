@@ -1,4 +1,4 @@
-from typing import Union, Tuple
+from typing import Union
 
 from scapy.packet import Packet
 
@@ -73,7 +73,7 @@ class Phy(WhadDeviceConnector):
             self.__ready = True
 
 
-    def format(self, packet: Union[Packet, bytes]) -> Tuple[Packet, int]:
+    def format(self, packet: Union[Packet, bytes]) -> tuple[Packet, int]:
         """
         Format a packet for PCAP export.
         """

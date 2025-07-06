@@ -1,7 +1,6 @@
 """Helpers for BLE GATT central CLI tool.
 """
 import json
-from typing import Tuple
 from argparse import Namespace
 from prompt_toolkit import print_formatted_text, HTML
 from whad.hub.ble.bdaddr import BDAddress
@@ -58,7 +57,7 @@ def set_bd_address(app, central: Central):
                      "interface supports this feature."))
 
 
-def create_central(app, piped: bool = False) -> Tuple[Central, dict]:
+def create_central(app, piped: bool = False) -> tuple[Central, dict]:
     """Create central connector.
     """
     central = None

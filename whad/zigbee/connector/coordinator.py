@@ -5,7 +5,6 @@ connector that allows creating a ZigBee coordinator tied to a WHAD device.
 This coordinator creates its own network and accept end devices to join it. It
 manages the join process and share the required encryption keys.
 """
-from typing import List
 from scapy.packet import Packet
 from whad.zigbee.connector import Zigbee
 from whad.dot15d4.stack import Dot15d4Stack
@@ -22,7 +21,7 @@ class Coordinator(Zigbee):
     Zigbee Coordinator interface for compatible WHAD device.
     """
 
-    def __init__(self, device: WhadDevice, applications: List[ApplicationObject] = None):
+    def __init__(self, device: WhadDevice, applications: list[ApplicationObject] = None):
         """ZigBee coordinator initialization.
 
         :param device: WHAD device to use as coordinator
@@ -49,7 +48,7 @@ class Coordinator(Zigbee):
         self.__stack.get_layer('apl').initialize()
         self._init_applications(applications)
 
-    def _init_applications(self, applications: List[ApplicationObject]):
+    def _init_applications(self, applications: list[ApplicationObject]):
         """Initialize the coordinator applications.
 
         :param applications: list of application objects to attach to the coordinator

@@ -6,8 +6,6 @@ This module provides a database that keeps track of discovered devices,
 :class:`whad.esb.scanning.CommunicatingDevicesDB`. Discovered devices information
 are handled in :class:`whad.ble.scanning.CommunicatingDevice`.
 """
-from typing import List
-
 from whad.esb.stack.llm.constants import ESBRole
 from whad.esb.esbaddr import ESBAddress
 from whad.scapy.layers.esb import ESB_Payload_Hdr, ESB_Ack_Response
@@ -62,7 +60,7 @@ class CommunicatingDevice:
         return self.__role
 
     @property
-    def channels(self) -> List[int]:
+    def channels(self) -> list[int]:
         """Channels used by the device.
 
         :return: list of channels used by the device in ascending order

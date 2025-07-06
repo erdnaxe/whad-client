@@ -2,7 +2,6 @@
 """
 WHAD traffic analyzer base module.
 """
-from typing import List
 from scapy.packet import Packet
 
 
@@ -48,7 +47,7 @@ class TrafficAnalyzer:
         self.__completed = True
 
     @property
-    def marked_packets(self) -> List[Packet]:
+    def marked_packets(self) -> list[Packet]:
         """Returns marked packets.
         """
         return self.__marked_packets

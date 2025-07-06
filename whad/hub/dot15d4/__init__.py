@@ -1,6 +1,5 @@
 """WHAD Protocol 802.15.4 domain message abstraction layer.
 """
-from typing import List
 from dataclasses import dataclass, field, fields
 
 from scapy.config import conf

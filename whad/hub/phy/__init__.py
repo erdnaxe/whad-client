@@ -1,6 +1,5 @@
 """WHAD Protocol PHY domain message abstraction layer.
 """
-from typing import List
 from dataclasses import dataclass, field, fields
 from enum import IntEnum
 
@@ -325,7 +324,7 @@ class PhyDomain(Registry):
         """
         return PhyDomain.bound('get_supported_freq', self.proto_version)()
 
-    def create_supported_freq_ranges(self, ranges: List[tuple]) -> HubMessage:
+    def create_supported_freq_ranges(self, ranges: list[tuple]) -> HubMessage:
         """Create a SupportedFreqRanges message
 
         :param ranges: List of tuples containing range start and end frequencies
@@ -392,7 +391,7 @@ class PhyDomain(Registry):
             timestamp=timestamp
         )
 
-    def create_montoring_report(self, timestamp: int, reports: List[int]) -> HubMessage:
+    def create_montoring_report(self, timestamp: int, reports: list[int]) -> HubMessage:
         """Create a MonitoringReport notification message
 
         :param timestamp: Report timestamp
@@ -479,7 +478,7 @@ class PhyDomain(Registry):
             packet=packet
         )
 
-    def create_send_raw_packet(self, iq: List[int]) -> HubMessage:
+    def create_send_raw_packet(self, iq: list[int]) -> HubMessage:
         """Create a SendPacket message
 
         :param iq: List of I/Q samples to send
@@ -550,7 +549,7 @@ class PhyDomain(Registry):
         return msg
 
     def create_raw_packet_received(self, frequency: int, packet: bytes, rssi: int = None, \
-                             timestamp: int = None, iq: List[int] = None, \
+                             timestamp: int = None, iq: list[int] = None, \
                              syncword : bytes = None, datarate : int = None, \
                              deviation : int = None, modulation : Modulation = None, \
                              endianness : Endianness = None) -> HubMessage:

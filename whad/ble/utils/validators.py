@@ -2,7 +2,6 @@
 """
 import re
 import argparse
-from typing import Tuple
 
 from binascii import unhexlify
 
@@ -250,7 +249,7 @@ def validate_int_att_handle(handle: int) -> int:
     return handle
 
 
-def validate_att_security_mode(mode: int, level: int) -> Tuple[int, int]:
+def validate_att_security_mode(mode: int, level: int) -> tuple[int, int]:
     """Validate ATT security mode.
 
     :param mode: Security mode to validate

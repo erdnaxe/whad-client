@@ -5,7 +5,7 @@ connector that allows the creation of a ZigBee end device.
 This connector is able to discover networks and based on a discovered network
 to join it (if permitted) and act as an End Device in this network.
 """
-from typing import List, Union
+from typing import Union
 from scapy.packet import Packet
 from whad.zigbee.connector import Zigbee
 from whad.dot15d4.stack import Dot15d4Stack
@@ -22,7 +22,7 @@ class EndDevice(Zigbee):
     Zigbee End Device interface for compatible WHAD device.
     """
 
-    def __init__(self, device: WhadDevice, applications: List[ApplicationObject] = None):
+    def __init__(self, device: WhadDevice, applications: list[ApplicationObject] = None):
         """ZigBee End Device connector initialization.
 
         :param device: WHAD device
@@ -49,7 +49,7 @@ class EndDevice(Zigbee):
         self.__stack.get_layer('apl').initialize()
         self._init_applications(applications)
 
-    def _init_applications(self, applications: List[ApplicationObject]):
+    def _init_applications(self, applications: list[ApplicationObject]):
         """Initialize ZigBee application objects attached to the end device.
         If no application is defined, add a default ZigBee Cluster Library application
         object.
@@ -69,7 +69,7 @@ class EndDevice(Zigbee):
                 self.__stack.get_layer('apl').attach_application(app, endpoint=endpoint)
                 endpoint += 1
 
-    def discover_networks(self) -> List[ZigbeeNetwork]:
+    def discover_networks(self) -> list[ZigbeeNetwork]:
         """Discover ZigBee networks.
 
         :return: list of discovered ZigBee networks

@@ -1,7 +1,7 @@
 """Bluetooth Low Energy sniffing module.
 """
 import logging
-from typing import List, Generator
+from typing import Generator
 from time import sleep, time
 
 from scapy.packet import Packet
@@ -248,7 +248,7 @@ class Sniffer(BLE, EventsManager):
         self._enable_sniffing()
 
 
-    def available_actions(self, action_filter=None) -> List[BLE]:
+    def available_actions(self, action_filter=None) -> list[BLE]:
         """Determine the actions available once synchronized with a connection.
         """
         actions = []
