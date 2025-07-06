@@ -715,7 +715,7 @@ class Phy(WhadDeviceConnector):
         if resp.full:
             raise ScheduleFifoFull
         else:
-            return resp.id
+            return int(resp.id)
 
     def on_discovery_msg(self, message):
         pass

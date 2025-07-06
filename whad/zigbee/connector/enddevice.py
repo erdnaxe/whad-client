@@ -47,7 +47,7 @@ class EndDevice(Zigbee):
         zdo = self.__stack.get_layer('apl').get_application_by_name("zdo")
         zdo.configuration.get("configNodeDescriptor").logical_type = LogicalDeviceType.END_DEVICE
         self.__stack.get_layer('apl').initialize()
-        self._init_applications(applications)
+        self._init_applications(applications or [])
 
     def _init_applications(self, applications: list[ApplicationObject]):
         """Initialize ZigBee application objects attached to the end device.
@@ -57,7 +57,7 @@ class EndDevice(Zigbee):
         :param applications: list of application objects to attach to the end device
         :type applications: list
         """
-        if applications is None:
+        if not applications:
             # If no application provided, attach a default ZCL application on endpoint 1
             app = ApplicationObject("zcl_app", 0x0104, 0x0100, device_version=0,
                                     input_clusters=[], output_clusters=[])

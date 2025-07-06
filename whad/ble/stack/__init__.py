@@ -7,6 +7,8 @@ from .constants import BtVersion
 from whad.common.stack import Layer, alias, source
 
 import logging
+from typing import Optional
+
 logger = logging.getLogger(__name__)
 
 @alias('phy')
@@ -96,7 +98,7 @@ class BleStack(Layer):
         """
         self.__connector.on_mtu_changed(conn_handle, mtu)
 
-    def set_encryption(self, conn_handle=None, enabled=True,ll_key=None, ll_iv=None, key=None, rand=None, ediv=None):
+    def set_encryption(self, conn_handle=None, enabled=True, ll_key: bytes = b"", ll_iv: bytes = b"", key: bytes = b"", rand: Optional[int] = None, ediv: Optional[int] = None):
         '''Enable or disable encryption using underlying WHAD connector.
         '''
         logger.debug('%s encryption (key=%s, iv=%s)' % ("enabling" if enabled else "disabling", ll_key.hex(), ll_iv.hex()))

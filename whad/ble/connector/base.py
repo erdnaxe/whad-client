@@ -638,8 +638,8 @@ class BLE(WhadDeviceConnector):
 
         return isinstance(resp, Success)
 
-    def set_encryption(self, conn_handle, enabled=False, ll_key=None, ll_iv=None,
-                       key=None, rand=None, ediv=None):
+    def set_encryption(self, conn_handle, enabled=False, ll_key: bytes = b"", ll_iv: bytes = b"",
+                       key: bytes = b"", rand: Optional[int] = None, ediv: Optional[int] = None):
         """Notify WHAD device about encryption status
         """
 
@@ -648,9 +648,9 @@ class BLE(WhadDeviceConnector):
         # Create a SetEncryption message
         msg = self.hub.ble.create_set_encryption(
             conn_handle,
-            ll_key if ll_key is not None else b"",
-            ll_iv if ll_iv is not None else b"",
-            key if key is not None else b"",
+            ll_key,
+            ll_iv,
+            key,
             struct.pack('<Q', rand) if rand is not None else b"",
             struct.pack('<H', ediv) if ediv is not None else b"",
             enabled

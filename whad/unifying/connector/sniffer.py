@@ -78,11 +78,8 @@ class Sniffer(Unifying, EventsManager):
         return self.__configuration
 
     @configuration.setter
-    def configuration(self, new_configuration) -> SnifferConfiguration:
+    def configuration(self, new_configuration):
         """Sniffing configuration setter.
-
-        :return: Sniffing configuration object
-        :rtype: :class:`whad.unifying.sniffing.SnifferConfiguration`
         """
         self.stop()
         self.__configuration = new_configuration

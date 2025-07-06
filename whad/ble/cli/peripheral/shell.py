@@ -117,7 +117,7 @@ class AdvRecordsManager:
         return self.__scan_rsp_data
 
     @property
-    def complete_name(self) -> str:
+    def complete_name(self) -> Optional[str]:
         """Parses current records and return the complete name value, if found.
 
         :return: Complete local name
@@ -126,6 +126,7 @@ class AdvRecordsManager:
         cln = self.get_record(AdvCompleteLocalName)
         if cln is not None:
             return cln.name.decode("utf-8")
+        return None
 
     @complete_name.setter
     def complete_name(self, value: str):
@@ -145,7 +146,7 @@ class AdvRecordsManager:
             self.add_record(AdvCompleteLocalName(bytes(value, "utf-8")))
 
     @property
-    def short_name(self) -> str:
+    def short_name(self) -> Optional[str]:
         """Parses current records and return short name value, if found.
 
         :return: Short name
@@ -154,6 +155,7 @@ class AdvRecordsManager:
         cln = self.get_record(AdvShortenedLocalName)
         if cln is not None:
             return cln.name.decode("utf-8")
+        return None
 
     @short_name.setter
     def short_name(self, value: str):
@@ -263,7 +265,7 @@ class AdvRecordsManager:
         if not self.__tainted:
             self.__tainted = True
 
-    def get_record(self, record_type) -> AdvDataField:
+    def get_record(self, record_type) -> Optional[AdvDataField]:
         """Find a specific record.
         """
         if not self.__tainted:
@@ -313,7 +315,7 @@ class AdvRecordsManager:
         # Make sure it fits
         self.pack()
 
-    def add_record(self, record: AdvDataField) -> bool:
+    def add_record(self, record: AdvDataField):
         """Add a record into the device advertising data, optimize storage.
         """
         # Mark as modified

@@ -1,5 +1,7 @@
 """WHAD Protocol BLE prepared sequences messages abstraction layer.
 """
+from typing import Optional
+
 from whad.protocol.whad_pb2 import Message
 from whad.protocol.ble.ble_pb2 import PrepareSequenceCmd
 from whad.hub.message import pb_bind, PbFieldInt, PbFieldBytes, PbMessageWrapper, \
@@ -17,11 +19,12 @@ class IPacketSequence:
         new_pending_pkt = self.message.ble.prepare.sequence.add()
         new_pending_pkt.packet = bytes(packet)
 
-    def get_packet(self, index: int) -> bytes:
+    def get_packet(self, index: int) -> Optional[bytes]:
         """Get packet from the sequence.
         """
         if index >= 0 and index <= len(self.packets):
             return self.packets[index].packet
+        return None
         
     def count_packets(self) -> int:
         """Return the number of packets in this prepare sequence message.
@@ -69,7 +72,7 @@ class PrepareSequence(Registry):
         self.proto_version = version
 
     @staticmethod
-    def parse(version: int, message: Message) -> HubMessage:
+    def parse(version: int, message: Message) -> Optional[HubMessage]:
         """Parses a WHAD BLE PrepareSequence message as seen by protobuf
         """
         trigger_type = message.ble.prepare.trigger.WhichOneof("trigger")

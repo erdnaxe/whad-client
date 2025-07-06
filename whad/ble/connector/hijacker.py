@@ -1,5 +1,7 @@
 """Bluetooth Low Energy connection hijacker connector.
 """
+from typing import Optional
+
 from whad.ble.connector.base import BLE
 from whad.ble.connector.central import Central
 from whad.ble.connector.peripheral import Peripheral
@@ -25,7 +27,7 @@ class Hijacker(BLE):
             raise UnsupportedCapability("Hijack")
 
     @property
-    def central(self) -> Central:
+    def central(self) -> Optional[Central]:
         """Return the hijacker central.
         """
         available_actions = self.available_actions(Central)

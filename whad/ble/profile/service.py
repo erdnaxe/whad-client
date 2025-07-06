@@ -233,7 +233,7 @@ class IncludeService(Attribute):
         return self.handle
 
     @end_handle.setter
-    def end_handle(self, value) -> int:
+    def end_handle(self, value):
         """End handle
         """
         self.__end_handle = value

@@ -99,12 +99,7 @@ class Mouse(Unifying):
         return self.__stack
 
     @property
-    def address(self) -> ESBStack:
-        """Retrieve the underlying stack
-
-        :return: Underlying ESB stack instance
-        :rtype: :class:`whad.esb.stack.ESBStack`
-        """
+    def address(self) -> str:
         return self.__address
 
     @address.setter

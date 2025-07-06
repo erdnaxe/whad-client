@@ -45,7 +45,7 @@ class AbstractPacket(metaclass=AbstractPacketMeta):
         :return: Corresponding Scapy representation
         :rtype: Packets
         """
-        return None
+        raise NotImplementedError
 
 class AbstractEventMeta(type):
     """Hub event metaclass

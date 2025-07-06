@@ -169,7 +169,7 @@ class CommandsRegistry:
         return None
 
     @staticmethod
-    def get_short_desc(command_name: str) -> str:
+    def get_short_desc(command_name: str) -> Optional[str]:
         """Get command short description from command name.
 
         :param command_name: Command name

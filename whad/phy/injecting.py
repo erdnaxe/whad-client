@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
-from whad.phy import Endianness
 from typing import Optional
+from whad.phy import Endianness
 
 @dataclass
 class FSKConfiguration:

@@ -197,7 +197,7 @@ class BleDomain(Registry):
         """
         return isinstance(packet.metadata, BLEMetadata)
 
-    def convert_packet(self, packet) -> HubMessage:
+    def convert_packet(self, packet) -> Optional[HubMessage]:
         """Convert a BLE packet to SendPdu or SendBlePdu message.
         """
         if isinstance(packet.metadata, BLEMetadata):

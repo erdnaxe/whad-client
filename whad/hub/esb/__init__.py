@@ -68,7 +68,7 @@ class EsbNodeAddress(object):
             raise EsbNodeAddressError('address must be provided as an array of bytes or an integer')
 
     @property
-    def value(self) -> bytes:
+    def value(self) -> Optional[bytes]:
         """Retrieve the address value (bytes)
         """
         return self.__address
@@ -133,7 +133,7 @@ class EsbDomain(Registry):
         """
         return isinstance(packet.metadata, ESBMetadata)
 
-    def convert_packet(self, packet) -> HubMessage:
+    def convert_packet(self, packet) -> Optional[HubMessage]:
         """Convert an ESB packet to SendPdu or SendBlePdu message.
         """
         if isinstance(packet.metadata, ESBMetadata):

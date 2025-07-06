@@ -1,3 +1,4 @@
+from typing import Optional
 from whad.device import WhadDevice, WhadDeviceConnector
 from whad.zigbee.connector.enddevice import EndDevice
 
@@ -27,7 +28,7 @@ class ZigbeeEndDeviceShell(InteractiveShell):
     """Zigbee End Device interactive shell
     """
 
-    def __init__(self, interface: WhadDevice = None, connector=None, network_panid=None):
+    def __init__(self, interface: Optional[WhadDevice] = None, connector=None, network_panid=None):
         super().__init__(HTML('<b>zigbee-enddevice></b> '))
 
         # If interface is None, pick the first matching our needs

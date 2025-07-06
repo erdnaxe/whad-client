@@ -1038,7 +1038,7 @@ class WhadDevice:
         return self.__info.device_id
 
     @property
-    def info(self) -> WhadDeviceInfo:
+    def info(self) -> Optional[WhadDeviceInfo]:
         """Get device info object
 
         :return: Device information object

@@ -11,6 +11,7 @@ for a given connected device:
 import logging
 from struct import unpack
 from time import sleep
+from typing import Optional
 
 from whad.ble.profile.service import Service
 from whad.ble.profile.characteristic import CharacteristicProperties, Characteristic, \
@@ -585,7 +586,7 @@ class PeripheralDevice(GenericProfile):
         self.__gatt.discover(save_values=include_values)
 
 
-    def find_service_by_uuid(self, uuid: UUID) -> PeripheralService:
+    def find_service_by_uuid(self, uuid: UUID) -> Optional[PeripheralService]:
         """Find service by its UUID
 
         :param  uuid:   Characteristic UUID

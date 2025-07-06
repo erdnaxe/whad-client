@@ -12,6 +12,7 @@ import logging
 from time import time, sleep
 from threading import Thread
 from queue import Empty, Queue
+from typing import Optional
 #from multiprocessing import Queue
 
 from whad.ble.connector.base import BLE
@@ -565,8 +566,9 @@ class Central(BLE):
             # Start a MTU exchange procedure
             self.__gatt_client.set_mtu(mtu)
 
-    def get_mtu(self) -> int:
+    def get_mtu(self) -> Optional[int]:
         """Retrieve the connection MTU.
         """
         if self.connection is not None:
             return self.connection.att.get_server_mtu()
+        return None

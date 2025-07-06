@@ -110,7 +110,7 @@ class AdvertisingDevice:
         return self.__got_scan_rsp
 
     @property
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """Device complete or short name.
         """
         # Do we have a name ?
@@ -257,7 +257,7 @@ class AdvertisingDevicesDB:
         self.__db = {}
 
 
-    def find_device(self, address: str) -> AdvertisingDevice:
+    def find_device(self, address: str) -> Optional[AdvertisingDevice]:
         """Find a device based on its BD address.
 
         :param      address: Device BD address

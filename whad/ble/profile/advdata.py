@@ -9,6 +9,8 @@ parse raw advertising data through class :class:`AdvDataFieldList`.
 """
 from struct import pack, unpack
 from urllib.parse import urlparse
+from typing import Optional
+
 from whad.hub.ble.bdaddr import BDAddress
 from whad.ble.profile.attribute import UUID
 
@@ -1256,7 +1258,7 @@ class AdvDataFieldList:
         else:
             raise AttributeError
 
-    def get(self, adv_type) -> AdvDataField:
+    def get(self, adv_type) -> Optional[AdvDataField]:
         """Find the first advertising record of the specified type
         """
         for field in self.__fields:

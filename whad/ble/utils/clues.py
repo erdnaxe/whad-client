@@ -2,6 +2,7 @@
 """
 import json
 import os.path
+from typing import Optional
 
 from importlib import resources
 
@@ -47,7 +48,7 @@ class CluesDb:
                 CluesDb.CLUES_CACHE = json.load(clues_json)
 
     @staticmethod
-    def get_uuid_alias(uuid: UUID) -> str:
+    def get_uuid_alias(uuid: UUID) -> Optional[str]:
         """Generate alias based on UUID.
         """
         # Load data into cache

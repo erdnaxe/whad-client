@@ -181,7 +181,7 @@ class PhyDomain(Registry):
         """
         return isinstance(packet.metadata, PhyMetadata)
 
-    def convert_packet(self, packet) -> HubMessage:
+    def convert_packet(self, packet) -> Optional[HubMessage]:
         """Convert a Phy packet to SendPdu or SendBlePdu message.
         """
         if isinstance(packet.metadata, PhyMetadata):

@@ -2,6 +2,7 @@
 """
 import struct
 import logging
+from typing import Optional
 
 from scapy.packet import Packet
 from scapy.compat import raw
@@ -73,7 +74,7 @@ class BleMessageTranslator:
         return formatted_packet, timestamp
 
 
-    def from_message(self, message) -> Packet:
+    def from_message(self, message) -> Optional[Packet]:
         """Convert a WHAD message into a packet, if it makes sense.
         """
         try:
@@ -120,7 +121,7 @@ class BleMessageTranslator:
             return None
 
 
-    def from_packet(self, packet: Packet, encrypt: bool = False) -> HubMessage:
+    def from_packet(self, packet: Packet, encrypt: bool = False) -> Optional[HubMessage]:
         """Convert a BLE PDU scapy packet into the corresponding hub message.
         """
         direction = packet.metadata.direction

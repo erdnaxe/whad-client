@@ -100,7 +100,7 @@ class Dot15d4Metadata(Metadata):
     lqi : Optional[int] = None
     timestamp : Optional[int] = None
 
-    def convert_to_header(self) -> Dot15d4TAP_Hdr:
+    def convert_to_header(self) -> tuple[Optional[Dot15d4TAP_Hdr], Optional[int]]:
         """Convert stored metadata into a Scapy Dot15d4TAP_Hdr instance.
 
         :return: Scapy header for 802.15.4 packet
@@ -179,7 +179,7 @@ class Dot15d4Domain(Registry):
         """
         return isinstance(packet.metadata, Dot15d4Metadata)
 
-    def convert_packet(self, packet) -> HubMessage:
+    def convert_packet(self, packet) -> Optional[HubMessage]:
         """Convert a Dot15d4 packet to SendPdu or SendBlePdu message.
         """
         if isinstance(packet.metadata, Dot15d4Metadata):

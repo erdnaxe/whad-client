@@ -92,7 +92,7 @@ class UnifyingDomain(Registry):
         """
         return isinstance(packet.metadata, UnifyingMetadata)
 
-    def convert_packet(self, packet) -> HubMessage:
+    def convert_packet(self, packet) -> Optional[HubMessage]:
         """Convert an ESB packet to SendPdu or SendBlePdu message.
         """
         if isinstance(packet.metadata, UnifyingMetadata):

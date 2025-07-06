@@ -70,36 +70,36 @@ class Dot15d4Service:
 
 
     # Services primitives decorator
-    def request(request_name):
+    def request(request_name: str):
         """ Mark the associated method as a "Request".
         """
         def _request(func):
             @wraps(func)
             def request_decorator(*args, **kwargs):
                 self = args[0]
-                self._logger.info("[{}] {} request ({},{})".format(args[0]._name, request_name, str(args[1:]),str(kwargs)))
+                self._logger.info(f"[{args[0]._name}] {request_name} request ({str(args[1:])},{str(kwargs)})")
                 result = func(*args, **kwargs)
-                self._logger.info("[{}] {} confirm ({})".format(args[0]._name, request_name, str(result)))
+                self._logger.info(f"[{args[0]._name}] {request_name} confirm ({str(result)})")
                 return result
             return request_decorator
         return _request
 
 
-    def response(response_name):
+    def response(response_name: str):
         """ Mark the associated method as a "Response".
         """
         def _response(func):
             @wraps(func)
             def response_decorator(*args, **kwargs):
                 self = args[0]
-                self._logger.info("[{}] {} response ({},{})".format(args[0]._name, response_name, str(args[1:]),str(kwargs)))
+                self._logger.info(f"[{args[0]._name}] {response_name} response ({str(args[1:])},{str(kwargs)})")
                 result = func(*args, **kwargs)
                 return result
             return response_decorator
         return _response
 
 
-    def indication(indication_name):
+    def indication(indication_name: str):
         """ Mark the associated method as an "Indication".
         """
         def _indication(func):
@@ -109,14 +109,14 @@ class Dot15d4Service:
                 pdu, parameters = func(*args, **kwargs)
 
                 if self._manager.upper_layer is None:
-                    self._logger.warning("[{}] {} indication not transmitted, no upper layer !".format(self._name, indication_name))
+                    self._logger.warning(f"[{self._name}] {indication_name} indication not transmitted, no upper layer !")
                     return None
 
                 upper = self._manager.upper_layer.alias
                 callback_kwargs = {"tag":indication_name}
                 callback_kwargs.update(parameters)
 
-                self._logger.info("[{}] {} indication ({},{})".format(self._name, indication_name, str(pdu), str(callback_kwargs)))
+                self._logger.info(f"[{self._name}] {indication_name} indication ({str(pdu)},{str(callback_kwargs)})")
                 return_value = self._manager.send(upper, pdu, **callback_kwargs)
                 return return_value
 

@@ -105,4 +105,4 @@ class BDAddress(object):
         :return:    ``True`` if BD address is valid, ``False`` otherwise
         :rtype:     bool
         """
-        return re.match('^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$',bd_addr)
+        return bool(re.match('^([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$',bd_addr))

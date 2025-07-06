@@ -160,10 +160,10 @@ def format_analyzer_output(output, mode : str = "human_readable") -> str:
         try:
             return json.dumps(output)
         except TypeError:
-            return None
+            return ""
 
     # Error
-    return None
+    return ""
 
 def wait(message, suffix : str = "", end : bool = False):
     """Display and update a waiting message.

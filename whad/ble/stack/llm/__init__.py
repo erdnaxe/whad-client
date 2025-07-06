@@ -204,7 +204,7 @@ class LinkLayerState(LayerState):
         if conn_handle in self.connections:
             del self.connections[conn_handle]
 
-    def get_connection_l2cap(self, conn_handle: int) -> Layer:
+    def get_connection_l2cap(self, conn_handle: int) -> Optional[Layer]:
         """Retrieve a connection L2CAP instance
 
         :param conn_handle: Connection handle
@@ -216,7 +216,7 @@ class LinkLayerState(LayerState):
             return self.connections[conn_handle]['l2cap']
         return None
 
-    def get_connection_handle(self, l2cap_instance: Layer) -> int:
+    def get_connection_handle(self, l2cap_instance: Layer) -> Optional[int]:
         """Get connection handle from L2CAP instance
 
         :param l2cap_instance: L2CAP layer instance
@@ -278,7 +278,7 @@ class LinkLayerState(LayerState):
         if conn_handle in self.connections:
             self.connections[conn_handle]['encrypted'] = True
 
-    def get_encryption_key(self, conn_handle: int) -> bytes:
+    def get_encryption_key(self, conn_handle: int) -> Optional[bytes]:
         """Retrieve encryption key for a given connection
 
         :param conn_handle: Connection handle
@@ -304,7 +304,7 @@ class LinkLayerState(LayerState):
             self.connections[conn_handle]['skd'] = skd
             self.connections[conn_handle]['iv'] = iv
 
-    def get_skd_and_iv(self, conn_handle: int) -> tuple[int, int]:
+    def get_skd_and_iv(self, conn_handle: int) -> tuple[Optional[int], Optional[int]]:
         """Retrieve SKD and IV for a given connection
 
         :param conn_handle: Connection handle
@@ -332,7 +332,7 @@ class LinkLayerState(LayerState):
             self.connections[conn_handle]['rand'] = rand
             self.connections[conn_handle]['ediv'] = ediv
 
-    def get_rand_and_ediv(self, conn_handle: int) -> tuple[int, int]:
+    def get_rand_and_ediv(self, conn_handle: int) -> tuple[Optional[int], Optional[int]]:
         """Retrieve RAND and EDIV for a given connection
 
         :param conn_handle: Connection handle
@@ -376,7 +376,7 @@ class LinkLayerState(LayerState):
         if conn_handle in self.connections:
             self.connections[conn_handle]['version_remote'] = version
 
-    def get_version_remote(self, conn_handle: int) -> LL_VERSION_IND:
+    def get_version_remote(self, conn_handle: int) -> Optional[LL_VERSION_IND]:
         """Retrieve version information for a given connection
 
         :param conn_handle: Connection handle

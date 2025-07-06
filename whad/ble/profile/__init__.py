@@ -361,7 +361,7 @@ class Characteristic:
         return self.__description
 
     @property
-    def service(self) -> Service:
+    def service(self) -> Optional[Service]:
         """Related service.
         """
         return self.__service
@@ -941,7 +941,7 @@ class GenericProfile:
         return [self.find_object_by_handle(handle) for handle in handles]
 
 
-    def find_characteristic_by_value_handle(self, value_handle) -> BleCharacteristic:
+    def find_characteristic_by_value_handle(self, value_handle) -> Optional[BleCharacteristic]:
         """Find characteristic object by its value handle.
 
         :param  value_handle:   Characteristic value handle
@@ -960,7 +960,7 @@ class GenericProfile:
             return None
 
 
-    def find_characteristic_end_handle(self, handle) -> int:
+    def find_characteristic_end_handle(self, handle) -> Optional[int]:
         """Find characteristic end handle based on its handle.
 
         :param  handle: Characteristic handle

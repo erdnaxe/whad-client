@@ -10,6 +10,7 @@ import logging
 from time import sleep
 from queue import Queue, Empty
 from threading import Thread
+from typing import Optional
 
 from whad.ble.connector.base import BLE
 from whad.hub.ble.bdaddr import BDAddress
@@ -558,11 +559,12 @@ class Peripheral(BLE):
             # Start a MTU exchange procedure
             self.connection.gatt.set_mtu(mtu)
 
-    def get_mtu(self) -> int:
+    def get_mtu(self) -> Optional[int]:
         """Retrieve the connection MTU.
         """
         if self.connection is not None:
             return self.connection.l2cap.get_local_mtu()
+        return None
 
 class PeripheralClient(Peripheral):
     '''This BLE connector provides a way to create a peripheral device with

@@ -47,7 +47,7 @@ class Coordinator(Zigbee):
 
         self.__stack.get_layer('apl').get_application_by_name("zdo").configuration.get("configNodeDescriptor").logical_type = LogicalDeviceType.COORDINATOR
         self.__stack.get_layer('apl').initialize()
-        self._init_applications(applications)
+        self._init_applications(applications or [])
 
     def _init_applications(self, applications: list[ApplicationObject]):
         """Initialize the coordinator applications.
@@ -55,7 +55,7 @@ class Coordinator(Zigbee):
         :param applications: list of application objects to attach to the coordinator
         :type applications: list
         """
-        if applications is None:
+        if not applications:
             # If no application provided, attach a default ZCL application on endpoint 1
             app = ApplicationObject("zcl_app", 0x0104, 0x0100, device_version=0,
                                     input_clusters=[], output_clusters=[])
@@ -67,7 +67,7 @@ class Coordinator(Zigbee):
                 endpoint += 1
 
     def start_network(self, channel: int = 23, ext_pan_id: int = 0x6055f90000f714e4,
-                      network_key: Optional[bytes] = None) -> ZigbeeNetwork:
+                      network_key: Optional[bytes] = None) -> Optional[ZigbeeNetwork]:
         """Start ZigBee network: initialize the extended PAN ID for APS, set channel and
         define a default network key.
 
