@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from whad.phy import Endianness
+from typing import Optional
 
 @dataclass
 class FSKConfiguration:
@@ -48,11 +49,11 @@ class InjectionConfiguration:
     :param qpsk: select QPSK modulation (qpsk)
     :param lora: select LoRa modulation (lora)
     """
-    frequency : int = None
+    frequency : Optional[int] = None
     little_endian : bool = False
-    datarate : int = None
-    packet_size : int = None
-    sync_word : bytes = None
+    datarate : Optional[int] = None
+    packet_size : Optional[int] = None
+    sync_word : Optional[bytes] = None
     ask: bool = False
     gfsk: bool = False
     bfsk: bool = False

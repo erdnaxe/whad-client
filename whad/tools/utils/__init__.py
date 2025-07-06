@@ -1,5 +1,6 @@
 import whad
 
+from typing import Optional
 from pkgutil import iter_modules
 from importlib import import_module
 from inspect import getdoc
@@ -225,7 +226,7 @@ def get_injector_parameters(configuration_class):
     return parameters
 
 
-def get_analyzers(protocol: str = None) -> dict:
+def get_analyzers(protocol: Optional[str] = None) -> dict:
     """Retrieve every protocol analyzer available or a subset if a specific
     protocol name is provided.
 

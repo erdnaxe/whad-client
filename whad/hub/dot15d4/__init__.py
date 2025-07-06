@@ -1,6 +1,7 @@
 """WHAD Protocol 802.15.4 domain message abstraction layer.
 """
 from dataclasses import dataclass, field, fields
+from typing import Optional
 
 from scapy.config import conf
 from scapy.layers.dot15d4 import Dot15d4FCS
@@ -95,9 +96,9 @@ class NodeAddressExt(NodeAddress):
 class Dot15d4Metadata(Metadata):
     """Dot15d4 meta-data holding class.
     """
-    is_fcs_valid : bool = None
-    lqi : int = None
-    timestamp : int = None
+    is_fcs_valid : Optional[bool] = None
+    lqi : Optional[int] = None
+    timestamp : Optional[int] = None
 
     def convert_to_header(self) -> Dot15d4TAP_Hdr:
         """Convert stored metadata into a Scapy Dot15d4TAP_Hdr instance.
@@ -377,9 +378,9 @@ class Dot15d4Domain(Registry):
             sample=sample
         )
 
-    def create_raw_pdu_received(self, channel: int, pdu: bytes, fcs: int, rssi: int = None, \
-                             timestamp: int = None, fcs_validity: bool = None, \
-                             lqi: int = None):
+    def create_raw_pdu_received(self, channel: int, pdu: bytes, fcs: int, rssi: Optional[int] = None, \
+                             timestamp: Optional[int] = None, fcs_validity: Optional[bool] = None, \
+                             lqi: Optional[int] = None):
         """Create a received PDU notification message.
 
         :param channel: Channel on which the PDU has been received
@@ -418,9 +419,9 @@ class Dot15d4Domain(Registry):
         # Return the generated message
         return msg
 
-    def create_pdu_received(self, channel: int, pdu: bytes, rssi: int = None, \
-                             timestamp: int = None, fcs_validity: bool = None, \
-                             lqi: int = None):
+    def create_pdu_received(self, channel: int, pdu: bytes, rssi: Optional[int] = None, \
+                             timestamp: Optional[int] = None, fcs_validity: Optional[bool] = None, \
+                             lqi: Optional[int] = None):
         """Create a received PDU notification message.
 
         :param channel: Channel on which the PDU has been received

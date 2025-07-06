@@ -6,6 +6,7 @@ from binascii import hexlify
 from struct import pack
 from random import randint
 from threading import Lock
+from typing import Optional
 
 from scapy.layers.bluetooth4LE import *
 
@@ -331,7 +332,7 @@ class LinkLayerState(LayerState):
             self.connections[conn_handle]['rand'] = rand
             self.connections[conn_handle]['ediv'] = ediv
 
-    def get_rand_and_ediv(self, conn_handle: int) -> Tuple[int, int]:
+    def get_rand_and_ediv(self, conn_handle: int) -> tuple[int, int]:
         """Retrieve RAND and EDIV for a given connection
 
         :param conn_handle: Connection handle
@@ -473,7 +474,7 @@ class LinkLayer(Layer):
         self.state.unregister_connection(conn_handle)
 
     @source('phy', 'data')
-    def on_data_pdu_recv(self, pdu: Packet, conn_handle: int = None):
+    def on_data_pdu_recv(self, pdu: Packet, conn_handle: Optional[int] = None):
         """Handle data PDU sent by our PHY layer
 
         :param pdu: Incoming PDU to process
@@ -490,7 +491,7 @@ class LinkLayer(Layer):
         self.on_data_pdu(pdu, conn_handle)
 
     @source('phy', 'control')
-    def on_ctrl_pdu_recv(self, pdu: Packet, tag: str = None, conn_handle: int = None):
+    def on_ctrl_pdu_recv(self, pdu: Packet, tag: Optional[str] = None, conn_handle: Optional[int] = None):
         """Handle control PDU received by our PHY layer
 
         :param pdu: Received control PDU
@@ -591,7 +592,7 @@ class LinkLayer(Layer):
                 conn_handle=conn_handle
             )
 
-    def send_ctrl_pdu(self, conn_handle: int, pdu: Packet, encrypt: bool = None):
+    def send_ctrl_pdu(self, conn_handle: int, pdu: Packet, encrypt: Optional[bool] = None):
         """Send a control PDU to the underlying PHY layer.
 
         :param conn_handle: Connection handle

@@ -8,6 +8,7 @@ This utility provides multiple features targeting Logitech Unifying mice:
 import sys
 import time
 import logging
+from typing import Optional
 
 # Whad dependencies
 from pynput import mouse
@@ -632,7 +633,7 @@ class UniKeyboardApp(CommandLineSink):
         # Launch post-run tasks
         self.post_run()
 
-    def send_payload(self, address: ESBAddress, payload: str, locale: str, key: bytes = None):
+    def send_payload(self, address: ESBAddress, payload: str, locale: str, key: Optional[bytes] = None):
         """Send payload to target keyboard.
         """
         # Connect to target device and performs discovery
@@ -668,7 +669,7 @@ class UniKeyboardApp(CommandLineSink):
         except (KeyboardInterrupt, SystemExit):
             connector.stop()
 
-    def send_ducky(self, address: ESBAddress, ducky_script: str, locale: str, key: bytes = None):
+    def send_ducky(self, address: ESBAddress, ducky_script: str, locale: str, key: Optional[bytes] = None):
         """Send ducky script
         """
         # Create our keyboard connector and set target address
@@ -699,7 +700,7 @@ class UniKeyboardApp(CommandLineSink):
         connector.unlock()
         connector.stop()
 
-    def send_stdin(self, address: ESBAddress, locale: str, key: bytes = None):
+    def send_stdin(self, address: ESBAddress, locale: str, key: Optional[bytes] = None):
         """Read lines from stdin and send text (including ENTER) to target
         keyboard.
         """
@@ -741,7 +742,7 @@ class UniKeyboardApp(CommandLineSink):
         except (KeyboardInterrupt, SystemExit):
             connector.stop()
 
-    def log_keyboard(self, address: ESBAddress, locale: str, key: bytes = None):
+    def log_keyboard(self, address: ESBAddress, locale: str, key: Optional[bytes] = None):
         """Log keyboard presses (if not encrypted)
         """
         # Connect to target device and performs discovery

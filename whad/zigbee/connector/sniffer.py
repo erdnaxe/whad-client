@@ -1,6 +1,6 @@
 import logging
 from time import time
-from typing import Generator
+from typing import Generator, Optional
 
 from scapy.packet import Packet
 from scapy.layers.zigbee import ZigbeeSecurityHeader
@@ -140,7 +140,7 @@ class Sniffer(Zigbee, EventsManager):
 
         return packet
 
-    def sniff(self, timeout: float = None) -> Generator[Packet, None, None]:
+    def sniff(self, timeout: Optional[float] = None) -> Generator[Packet, None, None]:
         """Sniff ZigBee packets from thin air.
 
         :param timeout: Specify the number of seconds after which sniffing will stop.

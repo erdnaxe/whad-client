@@ -5,7 +5,7 @@ connector that allows the creation of a ZigBee end device.
 This connector is able to discover networks and based on a discovered network
 to join it (if permitted) and act as an End Device in this network.
 """
-from typing import Union
+from typing import Union, Optional
 from scapy.packet import Packet
 from whad.zigbee.connector import Zigbee
 from whad.dot15d4.stack import Dot15d4Stack
@@ -22,7 +22,7 @@ class EndDevice(Zigbee):
     Zigbee End Device interface for compatible WHAD device.
     """
 
-    def __init__(self, device: WhadDevice, applications: list[ApplicationObject] = None):
+    def __init__(self, device: WhadDevice, applications: Optional[list[ApplicationObject]] = None):
         """ZigBee End Device connector initialization.
 
         :param device: WHAD device
@@ -139,7 +139,7 @@ class EndDevice(Zigbee):
         return self.__channel_page
 
 
-    def send(self, pdu: Union[Packet, bytes], channel: int = None):
+    def send(self, pdu: Union[Packet, bytes], channel: Optional[int] = None):
         """Send a PDU to the associated network, if any.
 
         :param pdu: pdu to send

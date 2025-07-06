@@ -4,6 +4,7 @@ This connector can be used either in standalone to replay packets or combined
 with whadreplay.
 """
 from dataclasses import dataclass
+from typing import Optional
 
 from scapy.packet import Packet
 from scapy.layers.bluetooth4LE import BTLE_DATA, BTLE_RF, BTLE_CTRL, LL_CONNECTION_PARAM_REQ, \
@@ -27,7 +28,7 @@ class ReplayConfiguration:
     :param target: specify the target BD address (t)
     :param random: target is using a random address (r)
     """
-    target : str = None
+    target : Optional[str] = None
     random : bool = True
 
 

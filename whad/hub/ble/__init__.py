@@ -1,6 +1,7 @@
 """WHAD Protocol Bluetooth Low Energy domain message abstraction layer.
 """
 from dataclasses import dataclass, field, fields
+from typing import Optional
 
 from .bdaddr import BDAddress
 from .chanmap import ChannelMap
@@ -69,10 +70,10 @@ class AddressType:
 @dataclass(repr=False)
 class BLEMetadata(Metadata):
     direction : BleDirection = None
-    connection_handle : int = None
-    is_crc_valid : bool = None
-    relative_timestamp : int = None
-    decrypted : bool = None
+    connection_handle : Optional[int] = None
+    is_crc_valid : Optional[bool] = None
+    relative_timestamp : Optional[int] = None
+    decrypted : Optional[bool] = None
     encrypt: bool = False
 
     @classmethod
@@ -247,7 +248,7 @@ class BleDomain(Registry):
             addr_type=AddressType.PUBLIC if bd_address.is_public() else AddressType.RANDOM
         )
 
-    def create_sniff_adv(self, channel: int, bd_address: BDAddress = None,
+    def create_sniff_adv(self, channel: int, bd_address: Optional[BDAddress] = None,
                        use_ext_adv: bool = False) -> HubMessage:
         """Create a SniffAdv message.
 
@@ -270,7 +271,7 @@ class BleDomain(Registry):
             use_extended_adv=use_ext_adv
         )
 
-    def create_sniff_connreq(self, channel: int, bd_address: BDAddress = None,
+    def create_sniff_connreq(self, channel: int, bd_address: Optional[BDAddress] = None,
                            show_empty: bool = False, show_adv: bool = False) -> HubMessage:
         """Create a SniffConnReq message.
 
@@ -307,9 +308,9 @@ class BleDomain(Registry):
             monitored_channels=ChannelMap(channels).value
         )
 
-    def create_sniff_active_conn(self, access_address: int, crc_init: int = None,
-                              channel_map: ChannelMap = None, interval: int = None,
-                              increment: int = None, channels: list[int] = None):
+    def create_sniff_active_conn(self, access_address: int, crc_init: Optional[int] = None,
+                              channel_map: Optional[ChannelMap] = None, interval: Optional[int] = None,
+                              increment: Optional[int] = None, channels: Optional[list[int]] = None):
         """Create a SniffActiveConn message.
 
         :param access_address: Target connection access address
@@ -427,7 +428,7 @@ class BleDomain(Registry):
             active=active
         )
 
-    def create_adv_mode(self, adv_data: bytes, scan_rsp: bytes = None) -> HubMessage:
+    def create_adv_mode(self, adv_data: bytes, scan_rsp: Optional[bytes] = None) -> HubMessage:
         """Create an AdvMode message.
 
         :param adv_data: Advertisement data (31 bytes max)
@@ -452,7 +453,7 @@ class BleDomain(Registry):
         """
         return BleDomain.bound('central_mode', self.proto_version)()
 
-    def create_periph_mode(self, adv_data: bytes = None, scan_rsp: bytes = None) -> HubMessage:
+    def create_periph_mode(self, adv_data: Optional[bytes] = None, scan_rsp: Optional[bytes] = None) -> HubMessage:
         """Create an PeriphMode message.
 
         :param adv_data: Advertisement data (31 bytes max)
@@ -486,9 +487,9 @@ class BleDomain(Registry):
         """
         return BleDomain.bound("stop", self.proto_version)()
 
-    def create_connect_to(self, bd_address: BDAddress = None, access_address: int = None,
-                        channel_map: ChannelMap = None, interval: int = None,
-                        increment: int = None, crc_init: int = None) ->HubMessage:
+    def create_connect_to(self, bd_address: Optional[BDAddress] = None, access_address: Optional[int] = None,
+                        channel_map: Optional[ChannelMap] = None, interval: Optional[int] = None,
+                        increment: Optional[int] = None, crc_init: Optional[int] = None) ->HubMessage:
         """Create a ConnectTo message.
 
         :param bd_address: Target BD address
@@ -622,7 +623,7 @@ class BleDomain(Registry):
             accesss_address=accesss_address
         )
 
-    def create_set_adv_data(self, adv_data: bytes, scan_rsp: bytes = None) -> HubMessage:
+    def create_set_adv_data(self, adv_data: bytes, scan_rsp: Optional[bytes] = None) -> HubMessage:
         """Create a SetAdvData message.
 
         :param adv_data: Advertising data
@@ -643,8 +644,8 @@ class BleDomain(Registry):
         return message
 
     def create_send_raw_pdu(self, direction: int, pdu: bytes, \
-                         crc: int = None, encrypt: bool = False, \
-                         access_address: int = None, conn_handle: int = None) -> HubMessage:
+                         crc: Optional[int] = None, encrypt: bool = False, \
+                         access_address: Optional[int] = None, conn_handle: Optional[int] = None) -> HubMessage:
         """Create a SendRawPdu message.
 
         :param direction: PDU direction
@@ -754,11 +755,11 @@ class BleDomain(Registry):
         )
 
     def create_raw_pdu_received(self, direction: int, pdu: bytes, \
-                             access_address: int = None, conn_handle: int = None, \
-                             rssi: int = None, timestamp: int = None, \
-                             rel_timestamp: int = None, crc: int = None, \
-                             crc_validity: bool = None, processed: bool = False, \
-                             decrypted: bool = False, channel: int = None) -> HubMessage:
+                             access_address: Optional[int] = None, conn_handle: Optional[int] = None, \
+                             rssi: Optional[int] = None, timestamp: Optional[int] = None, \
+                             rel_timestamp: Optional[int] = None, crc: Optional[int] = None, \
+                             crc_validity: Optional[bool] = None, processed: bool = False, \
+                             decrypted: bool = False, channel: Optional[int] = None) -> HubMessage:
         """Create a RawPduReceived message
 
         :param direction: PDU direction

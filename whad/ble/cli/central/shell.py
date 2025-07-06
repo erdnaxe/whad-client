@@ -7,6 +7,7 @@ from binascii import unhexlify, Error as BinasciiError
 
 from prompt_toolkit import print_formatted_text, HTML
 from hexdump import hexdump
+from typing import Optional
 
 # We need to import all ATT/L2CAP layers that may be used in python code evaluation
 # through `spdu` shell command.
@@ -64,7 +65,7 @@ class BleCentralShell(InteractiveShell):
     """Bluetooth Low Energy interactive shell
     """
 
-    def __init__(self, interface: WhadDevice = None, connector=None, bd_address=None):
+    def __init__(self, interface: Optional[WhadDevice] = None, connector=None, bd_address=None):
         super().__init__(HTML("<b>wble-central></b>"))
 
         # If interface is None, pick the first matching our needs

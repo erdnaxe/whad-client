@@ -6,6 +6,7 @@ from struct import unpack, pack
 from time import sleep
 from usb.core import find, USBError
 from usb.util import get_string
+from typing import Optional
 
 from scapy.layers.bluetooth4LE import BTLE, BTLE_ADV, BTLE_CONNECT_REQ, BTLE_DATA
 from scapy.compat import raw
@@ -28,7 +29,7 @@ from whad.scapy.layers.ubertooth import Ubertooth_Hdr,UBERTOOTH_PACKET_TYPES, \
 logger = logging.getLogger(__name__)
 
 # Helpers functions
-def get_ubertooth(index: int = 0, serial: str = None):
+def get_ubertooth(index: int = 0, serial: Optional[str] = None):
     """
     Returns an ubertooth USB object based on index or serial number.
     """

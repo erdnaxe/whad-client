@@ -57,7 +57,7 @@ def set_bd_address(app, central: Central):
                      "interface supports this feature."))
 
 
-def create_central(app, piped: bool = False) -> tuple[Central, dict]:
+def create_central(app, piped: bool = False) -> tuple[Central, bool]:
     """Create central connector.
     """
     central = None
@@ -133,5 +133,5 @@ def create_central(app, piped: bool = False) -> tuple[Central, dict]:
             if app.args.bdaddr_pub_src is not None or app.args.bdaddr_rand_src is not None:
                 set_bd_address(app, central)
 
-
+    assert central is not None
     return (central, profile_loaded)

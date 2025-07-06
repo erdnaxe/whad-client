@@ -13,7 +13,7 @@ looping from channel 0 to 100 over and over and capturing frames that match
 the expected format.
 """
 from time import time
-from typing import Generator
+from typing import Generator, Optional
 
 from scapy.packet import Packet
 
@@ -96,8 +96,8 @@ class Sniffer(ESB, EventsManager):
         self._enable_sniffing()
 
 
-    def sniff(self, channel: int = None, address: str = None, show_acknowledgements: bool = False,
-              timeout: float = None) -> Generator[Packet, None, None]:
+    def sniff(self, channel: Optional[int] = None, address: Optional[str] = None, show_acknowledgements: bool = False,
+              timeout: Optional[float] = None) -> Generator[Packet, None, None]:
         """Update current sniffing configuration if required and sniff packets. This function
         returns after `timeout` seconds, if specified.
 

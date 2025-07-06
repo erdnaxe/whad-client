@@ -58,7 +58,7 @@ import fcntl
 import logging
 import traceback
 
-from typing import Generator
+from typing import Generator, Optional
 from urllib.parse import urlparse, parse_qsl
 from signal import signal, SIGPIPE, SIG_DFL
 from argparse import ArgumentParser
@@ -289,7 +289,7 @@ class CommandLineApp(ArgumentParser):
     # Unique application instance
     instance = None
 
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool=True, interface: bool=True,
                  input: int = INPUT_WHAD,
                  output: int = OUTPUT_WHAD, **kwargs):
         """Instantiate a CommandLineApp
@@ -666,7 +666,7 @@ class CommandLineSource(CommandLineApp):
     """
     Command-line application that can send data to standard output.
     """
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool=True, interface: bool=True,
                  **kwargs):
         """Create a command-line application object that supports no standard
         input processing and is able to send data to standard output for tool
@@ -686,7 +686,7 @@ class CommandLineSink(CommandLineApp):
     """
     Command-line application that can read data from standard input.
     """
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool=True, interface: bool=True,
                  **kwargs):
         """Create a command-line application object that only supports standard
         input processing and cannot be chained with another tool.
@@ -705,7 +705,7 @@ class CommandLinePipe(CommandLineApp):
     to standard output.
     """
 
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool=True, interface: bool=True,
                  **kwargs):
         """Create a command-line application object that supports standard input
         processing and is able to send data to standard output for tool chaining.
@@ -724,7 +724,7 @@ class CommandLineDeviceSource(CommandLineApp):
     or `CommandLineDevicePipe` application, in a timely manner.
     """
 
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool=True, interface: bool=True,
                  **kwargs):
         """Create a command-line application object that supports no standard
         input processing and is able to send data to standard output for tool
@@ -745,7 +745,7 @@ class CommandLineDeviceSink(CommandLineApp):
     chained with another application.
     """
 
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool = True, interface: bool = True,
                  **kwargs):
         """Create a command-line application object that only supports standard
         input processing and cannot be chained with another tool.
@@ -764,7 +764,7 @@ class CommandLineDevicePipe(CommandLineApp):
     WHAD command-line applications.
     """
 
-    def __init__(self, description: str = None, commands: bool=True, interface: bool=True,
+    def __init__(self, description: Optional[str] = None, commands: bool = True, interface: bool = True,
                  **kwargs):
         """Create a command-line application object that supports standard input
         processing and is able to send data to standard output for tool chaining.

@@ -1,7 +1,7 @@
 """wble-peripheral interactive shell.
 """
 import json
-from typing import Union
+from typing import Union, Optional
 from binascii import unhexlify, Error as BinasciiError
 
 # pylint: disable-next=wildcard-import,unused-wildcard-import
@@ -76,7 +76,7 @@ class AdvRecordsManager:
     possible in the advertisement data and the scan response data.
     """
 
-    def __init__(self, adv_data: AdvDataFieldList = None, scan_rsp_data: AdvDataFieldList = None):
+    def __init__(self, adv_data: Optional[AdvDataFieldList] = None, scan_rsp_data: Optional[AdvDataFieldList] = None):
         """Initialize manager
         """
         # Load advertising records
@@ -400,7 +400,7 @@ class BlePeriphShell(InteractiveShell):
     MODE_SERVICE_EDIT = 1
     MODE_STARTED = 2
 
-    def __init__(self, interface: WhadDevice = None, dev_profile=None):
+    def __init__(self, interface: Optional[WhadDevice] = None, dev_profile=None):
         super().__init__(HTML("<b>wble-periph></b> "))
 
         self.__current_mode = self.MODE_NORMAL

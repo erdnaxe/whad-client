@@ -10,6 +10,7 @@ import logging
 from time import time
 from typing import Generator
 from scapy.packet import Packet
+from typing import Optional
 
 from whad.device import WhadDevice
 from whad.exceptions import WhadDeviceDisconnected
@@ -208,7 +209,7 @@ class Sniffer(Unifying, EventsManager):
         return packet
 
 
-    def sniff(self, timeout: float = None) -> Generator[Packet, None, None]:
+    def sniff(self, timeout: Optional[float] = None) -> Generator[Packet, None, None]:
         """Sniff Logitech Unifying packets
 
         :param timeout: Number of seconds after which sniffing stops, uninterrupted if set to None

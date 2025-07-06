@@ -17,6 +17,7 @@ import logging
 from threading import Thread
 from random import randint
 from binascii import hexlify
+from typing import Optional
 
 from scapy.config import conf
 
@@ -206,7 +207,7 @@ class UnixSocketServerDevice(WhadDevice):
 
     INTERFACE_NAME = "unix_server"
 
-    def __init__(self, path: str = None, parameters: dict = None):
+    def __init__(self, path: Optional[str] = None, parameters: dict = {}):
         """Create a WHAD unix socket.
         """
         super().__init__()

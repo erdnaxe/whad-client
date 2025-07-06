@@ -4,6 +4,7 @@ WHAD Enhanced ShockBurst base connector
 This module provides the `ESB` connector class to interact with Enhanced
 ShockBurst compatible devices.
 """
+from typing import Optional
 from scapy.packet import Packet
 
 from whad.hub.discovery import Domain, Capability
@@ -156,7 +157,7 @@ class ESB(WhadDeviceConnector):
             (commands & (1 << Commands.SetNodeAddress)) > 0
         )
 
-    def sniff(self, channel : int = None, address : str = "FF:FF:FF:FF:FF",
+    def sniff(self, channel : Optional[int] = None, address : str = "FF:FF:FF:FF:FF",
               show_acknowledgements : bool = False):
         """
         Sniff Enhanced ShockBurst packets.

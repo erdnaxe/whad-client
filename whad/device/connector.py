@@ -7,6 +7,7 @@ implements all the basic features of a device connector.
 import logging
 from queue import Queue, Empty
 from threading import Lock
+from typing import Optional
 
 from whad.helpers import message_filter
 from whad.hub import ProtocolHub
@@ -249,7 +250,7 @@ class WhadDeviceConnector:
         if self.__synchronous:
             self.__pending_pdus.put(pdu)
 
-    def wait_packet(self, timeout:float = None):
+    def wait_packet(self, timeout: Optional[float] = None):
         '''Wait for a packet when in synchronous mode.
 
         :param timeout: If specified, defines a timeout when querying the PDU queue

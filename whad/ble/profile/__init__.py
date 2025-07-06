@@ -11,7 +11,7 @@ allows to interact with it:
 """
 import json
 import logging
-from typing import Iterator
+from typing import Iterator, Optional
 
 from whad.ble.profile.attribute import Attribute, UUID
 from whad.ble.profile.characteristic import Characteristic as BleCharacteristic,\
@@ -208,7 +208,7 @@ class Characteristic:
     """GATT characteristic.
     """
     def __init__(self, name=None, uuid=None, value=b'', permissions=None, notify=False,
-                 indicate=False, description=None, security: list = None, **kwargs):
+                 indicate=False, description=None, security: Optional[list] = None, **kwargs):
         """Declares a GATT characteristic.
 
         Other named arguments are used to declare characteristic's descriptors.

@@ -3,6 +3,7 @@
 This module implements the Registry class used in automated protocol buffers
 messages parsing.
 """
+from typing import Optional
 from .exceptions import UnsupportedVersionException
 
 class Registry(object):
@@ -24,7 +25,7 @@ class Registry(object):
         parent_class.VERSIONS[version][name] = clazz
 
     @classmethod
-    def bound(parent_class, name: str = None, version: int = 1):
+    def bound(parent_class, name: Optional[str] = None, version: int = 1):
         """Retrieve the given node class `name` for version `version`.
 
         If there is no defined class for version N, look for a corresponding

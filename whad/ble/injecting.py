@@ -5,6 +5,7 @@ used by `winject` to determine the parameters required for packet injection.
 """
 
 from dataclasses import dataclass
+from typing import Optional
 from whad.ble.sniffing import ConnectionConfiguration
 
 
@@ -26,5 +27,5 @@ class InjectionConfiguration:
     inject_to_master : bool = False
     synchronize : bool = False
     active_connection : ConnectionConfiguration = None
-    channel : int = None
+    channel : Optional[int] = None
     filter : str = "FF:FF:FF:FF:FF:FF"

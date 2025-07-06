@@ -7,6 +7,7 @@ This module provides a database that keeps track of discovered devices,
 are handled in :class:`whad.ble.scanning.AdvertisingDevice`.
 """
 from time import time
+from typing import Optional
 
 from scapy.layers.bluetooth4LE import BTLE_ADV_IND, BTLE_ADV_NONCONN_IND, \
     BTLE_SCAN_RSP, BTLE_ADV
@@ -207,7 +208,7 @@ class AdvertisingDevice:
         """
         self.__reported = True
 
-    def update(self, rssi : float = None, adv_data : bytes = None):
+    def update(self, rssi : Optional[float] = None, adv_data : Optional[bytes] = None):
         """Update device RSSI and advertising data and check for scan response
         timeout.
 

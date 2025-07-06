@@ -9,7 +9,7 @@ import sys
 import stat
 import shlex
 import inspect
-from typing import Union
+from typing import Union, Optional
 from subprocess import Popen, PIPE
 from shutil import copy, which
 from pathlib import Path
@@ -267,7 +267,7 @@ class WhadInstallApp(CommandLineApp):
         return result
 
     def run_command(self, cmd: str, shell: bool = False, force_env: dict = None,
-                    cwd: str = None, added_path: str = None):
+                    cwd: Optional[str] = None, added_path: Optional[str] = None):
         """Run the specified command and return its output.
 
         :param cmd: Command to execute

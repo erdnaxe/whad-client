@@ -2,6 +2,7 @@
 """
 from dataclasses import dataclass, field, fields
 from enum import IntEnum
+from typing import Optional
 
 from whad.protocol.phy.phy_pb2 import LoRaSpreadingFactor, LoRaCodingRate, JammingMode, \
     Endianness as PbEndianness, TXPower, Modulation as PbModulation
@@ -92,11 +93,11 @@ class TxPower:
 
 @dataclass(repr=False)
 class PhyMetadata(Metadata):
-    frequency : int = None
+    frequency : Optional[int] = None
     iq : list = field(default_factory=lambda: [])
     endianness : Endianness = None
-    deviation : int = None
-    datarate : int = None
+    deviation : Optional[int] = None
+    datarate : Optional[int] = None
     modulation : Modulation = None
     syncword : Syncword = None
 
@@ -496,10 +497,10 @@ class PhyDomain(Registry):
         return msg
 
 
-    def create_packet_received(self, frequency: int, packet: bytes, rssi: int = None, \
-                             timestamp: int = None, syncword : bytes = None, datarate : int = None, \
-                             deviation : int = None, modulation : Modulation = None, \
-                             endianness : Endianness = None) -> HubMessage:
+    def create_packet_received(self, frequency: int, packet: bytes, rssi: Optional[int] = None, \
+                             timestamp: Optional[int] = None, syncword : Optional[bytes] = None, datarate : Optional[int] = None, \
+                             deviation : Optional[int] = None, modulation : Optional[Modulation] = None, \
+                             endianness : Optional[Endianness] = None) -> HubMessage:
         """Create a PacketReceived notification message
 
         :param frequency: Frequency on which the packet has been received
@@ -548,11 +549,11 @@ class PhyDomain(Registry):
         # Success
         return msg
 
-    def create_raw_packet_received(self, frequency: int, packet: bytes, rssi: int = None, \
-                             timestamp: int = None, iq: list[int] = None, \
-                             syncword : bytes = None, datarate : int = None, \
-                             deviation : int = None, modulation : Modulation = None, \
-                             endianness : Endianness = None) -> HubMessage:
+    def create_raw_packet_received(self, frequency: int, packet: bytes, rssi: Optional[int] = None, \
+                             timestamp: Optional[int] = None, iq: Optional[list[int]] = None, \
+                             syncword : Optional[bytes] = None, datarate : Optional[int] = None, \
+                             deviation : Optional[int] = None, modulation : Optional[Modulation] = None, \
+                             endianness : Optional[Endianness] = None) -> HubMessage:
         """Create a RawPacketReceived notification message
 
         :param frequency: Frequency on which the packet has been received

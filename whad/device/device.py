@@ -10,6 +10,7 @@ from binascii import hexlify
 from time import time, sleep
 from queue import Queue, Empty
 from threading import Thread, Lock
+from typing import Optional
 
 # Whad imports
 from whad.exceptions import UnsupportedDomain, WhadDeviceNotReady, \
@@ -373,7 +374,7 @@ class WhadDevice:
         """
         return self.__opened
 
-    def __init__(self, index: int = None):
+    def __init__(self, index: Optional[int] = None):
         """Initialize a device
 
         Device index can be specified through the `index` argument, but keep
@@ -1106,7 +1107,7 @@ class VirtualDevice(WhadDevice):
     """
     AdapterDevice device class.
     """
-    def __init__(self, index: int = None):
+    def __init__(self, index: Optional[int] = None):
         self._dev_type = None
         self._dev_id = None
         self._fw_author = None

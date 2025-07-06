@@ -1,6 +1,6 @@
 """WHAD Protocol ESB domain message abstraction layer.
 """
-from typing import Union
+from typing import Union, Optional
 from dataclasses import dataclass, field, fields
 
 from whad.scapy.layers.esb import ESB_Hdr, ESB_Payload_Hdr, ESB_Ack_Response, \
@@ -82,9 +82,9 @@ class EsbNodeAddress(object):
 
 @dataclass(repr=False)
 class ESBMetadata(Metadata):
-    is_crc_valid : bool = None
-    address : str = None
-    timestamp : int = None
+    is_crc_valid : Optional[bool] = None
+    address : Optional[str] = None
+    timestamp : Optional[int] = None
 
     def convert_to_header(self):
         return None, self.timestamp
@@ -302,8 +302,8 @@ class EsbDomain(Registry):
             retr_count=retr_count
         )
 
-    def create_pdu_received(self, channel: int, pdu: bytes, rssi: int = None, timestamp: int = None,
-                          crc_validity: bool = None, address: EsbNodeAddress = None) -> HubMessage:
+    def create_pdu_received(self, channel: int, pdu: bytes, rssi: Optional[int] = None, timestamp: Optional[int] = None,
+                          crc_validity: Optional[bool] = None, address: Optional[EsbNodeAddress] = None) -> HubMessage:
         """Create a PduReceived notification message.
 
         :param channel: Channel on which the PDU has been received
@@ -340,8 +340,8 @@ class EsbDomain(Registry):
         return msg
 
 
-    def create_raw_pdu_received(self, channel: int, pdu: bytes, rssi: int = None, timestamp: int = None,
-                          crc_validity: bool = None, address: EsbNodeAddress = None) -> HubMessage:
+    def create_raw_pdu_received(self, channel: int, pdu: bytes, rssi: Optional[int] = None, timestamp: Optional[int] = None,
+                          crc_validity: Optional[bool] = None, address: Optional[EsbNodeAddress] = None) -> HubMessage:
         """Create a RawPduReceived notification message.
 
         :param channel: Channel on which the PDU has been received

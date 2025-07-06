@@ -27,7 +27,7 @@ an :class:`UnsupportedCapability` exception.
 
 """
 from time import time
-from typing import Iterator
+from typing import Iterator, Optional
 
 from scapy.packet import Packet
 from scapy.layers.bluetooth4LE import BTLE_ADV
@@ -93,7 +93,7 @@ class Scanner(BLE):
             self.enable_scan_mode(False)
 
     def discover_devices(self, minimal_rssi = None, filter_address = None,
-                         timeout: float = None) -> Iterator[AdvertisingDevice]:
+                         timeout: Optional[float] = None) -> Iterator[AdvertisingDevice]:
         """
         Parse incoming advertisements and yield discovered devices.
 
@@ -119,7 +119,7 @@ class Scanner(BLE):
             if (timeout is not None) and (time() - start_time > timeout):
                 break
 
-    def sniff(self, timeout: float = None) -> Iterator[Packet]:
+    def sniff(self, timeout: Optional[float] = None) -> Iterator[Packet]:
         """
         Listen and yield incoming advertising PDUs.
         """

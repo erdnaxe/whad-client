@@ -4,6 +4,7 @@ LoRaWAN Gateway stack link-layer manager
 from time import sleep, time
 from binascii import hexlify
 from random import randint
+from typing import Optional
 from whad.lorawan.stack.mac import LWMacLayer
 from whad.common.stack import LayerState, Layer, alias, source, state,instance
 from whad.scapy.layers.lorawan import MACPayloadUplink, PHYPayload, JoinAccept, JoinRequest, MACPayloadDownlink
@@ -40,8 +41,8 @@ class LWGwLinkLayerState(LayerState):
         """
         return (dev_addr in self.connections)
 
-    def register_connection(self, dev_addr : int, dev_eui : EUI = None, mac_node : str = None,
-                            appskey : bytes = None, nwkskey : bytes = None, timestamp : float = None):
+    def register_connection(self, dev_addr : int, dev_eui : EUI = None, mac_node : Optional[str] = None,
+                            appskey : Optional[bytes] = None, nwkskey : Optional[bytes] = None, timestamp : float = None):
         """Register a device connection.
 
         Keeps track of MAC instance name associated with the device as well as the

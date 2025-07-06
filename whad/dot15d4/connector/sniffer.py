@@ -4,7 +4,7 @@ This module provides a Sniffer class for Dot15d4 protocol, that is used by
 `whad-sniff` to sniff dot15d4-based protocols.
 """
 from time import time
-from typing import Generator, List
+from typing import Generator, List, Optional
 
 # Required by type hints
 from scapy.packet import Packet
@@ -72,7 +72,7 @@ class Sniffer(Dot15d4, EventsManager):
         actions = []
         return [action for action in actions if filter is None or isinstance(action, filter)]
 
-    def sniff(self, timeout: float = None) -> Generator[Packet, None , None]:
+    def sniff(self, timeout: Optional[float] = None) -> Generator[Packet, None , None]:
         """Main sniffing loop.
 
         This method waits for raw PDUs or PDUs, depending on hardware capability, and report

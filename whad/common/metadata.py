@@ -1,11 +1,12 @@
-from dataclasses import dataclass,fields
+from dataclasses import dataclass, fields
+from typing import Optional
 
 @dataclass(repr=False)
 class Metadata:
-    raw : bool = None
-    timestamp : int = None
-    channel : int = None
-    rssi : int = None
+    raw : Optional[bool] = None
+    timestamp : Optional[int] = None
+    channel : Optional[int] = None
+    rssi : Optional[int] = None
 
     def convert_to_header(self):
         pass

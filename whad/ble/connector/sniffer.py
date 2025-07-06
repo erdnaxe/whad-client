@@ -1,7 +1,7 @@
 """Bluetooth Low Energy sniffing module.
 """
 import logging
-from typing import Generator
+from typing import Generator, Optional
 from time import sleep, time
 
 from scapy.packet import Packet
@@ -304,7 +304,7 @@ class Sniffer(BLE, EventsManager):
 
         return packet
 
-    def sniff(self, timeout: float = None) -> Generator[Packet, None, None]:
+    def sniff(self, timeout: Optional[float] = None) -> Generator[Packet, None, None]:
         """Main sniffing function
 
         :param timeout: Number of seconds after which sniffing is stopped.

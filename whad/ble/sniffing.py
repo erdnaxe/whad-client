@@ -2,6 +2,7 @@
 sniffing.
 """
 from dataclasses import dataclass, field
+from typing import Optional
 
 from whad.ble.exceptions import InvalidAccessAddressException
 from whad.ble.utils.phy import is_access_address_valid
@@ -12,10 +13,10 @@ from whad.hub.ble import ChannelMap
 class SynchronizedConnection:
     """Synchronized connection data class.
     """
-    access_address : int = None
-    crc_init : int = None
-    hop_interval : int = None
-    hop_increment : int = None
+    access_address : Optional[int] = None
+    crc_init : Optional[int] = None
+    hop_interval : Optional[int] = None
+    hop_increment : Optional[int] = None
     channel_map : ChannelMap = None
 
 class ConnectionConfiguration(SynchronizedConnection):

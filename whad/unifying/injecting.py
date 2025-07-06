@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from typing import Optional
 
 @dataclass
 class InjectionConfiguration:
@@ -10,5 +11,5 @@ class InjectionConfiguration:
     :param synchronize: enable synchronization (s)
     """
     channel : int = 0
-    address : str = None
+    address : Optional[str] = None
     synchronize : bool = False

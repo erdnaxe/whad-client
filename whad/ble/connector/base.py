@@ -5,6 +5,7 @@ basic BLE-related methods for the attached interface.
 """
 import struct
 import logging
+from typing import Optional
 
 # Scapy
 from scapy.layers.bluetooth4LE import BTLE, BTLE_ADV, BTLE_DATA, BTLE_ADV_IND, \
@@ -420,9 +421,9 @@ class BLE(WhadDeviceConnector):
         resp = self.send_command(msg, message_filter(CommandResult))
         return isinstance(resp, Success)
 
-    def sniff_active_connection(self, access_address: int , crc_init: int = None,
-                                channel_map: ChannelMap = None, hop_interval: int = None,
-                                hop_increment: int = None):
+    def sniff_active_connection(self, access_address: int , crc_init: Optional[int] = None,
+                                channel_map: Optional[ChannelMap] = None, hop_interval: Optional[int] = None,
+                                hop_increment: Optional[int] = None):
         """
         Sniff active connection.
         """
@@ -553,7 +554,7 @@ class BLE(WhadDeviceConnector):
         resp = self.send_command(msg, message_filter(CommandResult))
         return isinstance(resp, Success)
 
-    def enable_peripheral_mode(self, adv_data: bytes = None, scan_data: bytes = None):
+    def enable_peripheral_mode(self, adv_data: Optional[bytes] = None, scan_data: Optional[bytes] = None):
         """
         Enable Bluetooth Low Energy peripheral mode (acts as slave).
         """
@@ -572,9 +573,9 @@ class BLE(WhadDeviceConnector):
         resp = self.send_command(msg, message_filter(CommandResult))
         return isinstance(resp, Success)
 
-    def connect_to(self, bd_addr: BDAddress, random: bool = False, access_address: int = None, \
-                   channel_map: ChannelMap = None, crc_init: int = None, hop_interval: int = None, \
-                   hop_increment: int = None):
+    def connect_to(self, bd_addr: BDAddress, random: bool = False, access_address: Optional[int] = None, \
+                   channel_map: Optional[ChannelMap] = None, crc_init: Optional[int] = None, hop_interval: Optional[int] = None, \
+                   hop_increment: Optional[int] = None):
         """
         Initiate a Bluetooth Low Energy connection.
         """

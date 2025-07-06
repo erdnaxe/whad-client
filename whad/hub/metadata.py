@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Optional
 from dataclasses import dataclass, field, fields
 
 
@@ -10,11 +10,11 @@ def channel_to_frequency(channel):
 
 @dataclass(repr=False)
 class Metadata:
-    raw : bool = None
-    decrypted : bool = None
+    raw : Optional[bool] = None
+    decrypted : Optional[bool] = None
     timestamp : Union[int, float] = None
-    channel : int = None
-    rssi : int = None
+    channel : Optional[int] = None
+    rssi : Optional[int] = None
 
     def convert_to_header(self):
         pass

@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from typing import Optional
 
 @dataclass
 class InjectionConfiguration:
@@ -8,4 +9,4 @@ class InjectionConfiguration:
     :param channel: select the channel to use for injection (c)
 
     """
-    channel : int = None
+    channel : Optional[int] = None

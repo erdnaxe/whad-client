@@ -5,6 +5,7 @@ This module defines the ESB configuration class for
 packet injection.
 """
 from dataclasses import dataclass
+from typing import Optional
 
 @dataclass
 class InjectionConfiguration:
@@ -16,5 +17,5 @@ class InjectionConfiguration:
     :param synchronize: enable synchronization (s)
     """
     channel : int = 0
-    address : str = None
+    address : Optional[str] = None
     synchronize : bool = False
